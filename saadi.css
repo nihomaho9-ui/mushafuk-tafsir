@@ -1,0 +1,24 @@
+html, body { min-height: 100%; overscroll-behavior-x: none; touch-action: pan-y; }
+body { margin: 0; background: #fffaf0; color: #161310; font-family: "Segoe UI", sans-serif; }
+a { color: inherit; }
+.bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 0.7rem; padding: calc(0.55rem + env(safe-area-inset-top)) 0.85rem 0.55rem; background: #f6f1e4; border-bottom: 1px solid rgba(196, 165, 110, 0.55); }
+.x { width: 2.35rem; height: 2.35rem; border-radius: 50%; border: 1.5px solid #c4a56e; display: grid; place-items: center; text-decoration: none; color: #1a3330; font-size: 1.25rem; line-height: 1; flex: none; }
+.who { display: flex; flex-direction: column; min-width: 0; }
+.who b { color: #1a3330; font-size: 1.15rem; }
+.who small { color: #8a7d68; font-size: 0.78rem; }
+main { max-width: 46rem; margin: 0 auto; padding: 0.85rem 1rem 2.5rem; min-height: calc(100dvh - 4.2rem); touch-action: pan-y; }
+.src { margin: 0.2rem 0 0.8rem; text-align: center; color: #8a7d68; font-size: 0.78rem; }
+.ay { margin: 0.4rem 0 1rem; font-family: "Amiri", "Scheherazade New", "Traditional Arabic", serif; font-size: 1.65rem; line-height: 2.35; text-align: center; }
+.tx { font-size: 1.12rem; line-height: 2.05; text-align: right; white-space: pre-wrap; }
+html[dir="ltr"] .tx { text-align: start; }
+.rng { display: block; margin-bottom: 0.4rem; color: #8a6a2e; font-size: 0.82rem; }
+.pn { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.6rem; }
+.pn a { color: #0b6b4f; font-weight: 650; text-decoration: none; }
+.idx { max-width: 46rem; margin: 0 auto; padding: 1rem 1rem 3rem; }
+.idx h1 { text-align: center; color: #1a3330; font-size: 1.5rem; margin: 0.4rem 0 0.2rem; }
+.idx .sub { text-align: center; color: #8a7d68; margin: 0 0 1rem; }
+.sl { display: grid; gap: 0.55rem; }
+.sl a { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.9rem; border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 12px; background: #fff; text-decoration: none; }
+.k { width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center; background: #0b6b4f; color: #fff; flex: none; font-size: 0.85rem; }
+.nm { flex: 1; color: #1a3330; }
+.nm small { display: block; color: #8a7d68; }
