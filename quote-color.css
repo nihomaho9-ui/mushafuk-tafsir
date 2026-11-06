@@ -1,0 +1,16 @@
+/* quote-color: emerald ayah / deep blue hadith (preview-1). Body stays neutral. */
+:root{
+  --qm-ayah:#047857; /* emerald */
+  --qm-hadith:#1e3a8a; /* deep blue */
+}
+html.qm-theme-black,html.qm-night{
+  --qm-ayah:#34d399; /* lighter emerald for dark bg */
+  --qm-hadith:#93c5fd; /* lighter blue for dark bg */
+}
+.qm-q-ayah,.ay.qm-q-ayah,.qm-gh-q{
+  color:var(--qm-ayah);
+}
+.qm-q-hadith{
+  color:var(--qm-hadith);
+}
+/* do not change Quran mushaf / verse glyph fonts — only color */

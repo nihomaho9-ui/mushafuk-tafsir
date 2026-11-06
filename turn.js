@@ -6,7 +6,7 @@
     var css = document.createElement("link");
     css.rel = "stylesheet";
     var base = (s && s.src) ? s.src.replace(/turn\.js[^/]*$/, "") : "https://tafsir.mushafuk.online/";
-    css.href = base + "saadi.css?v=3";
+    css.href = base + "saadi.css?v=4";
     document.head.appendChild(css);
   })();
   (function () {
@@ -15,6 +15,12 @@
     th.src = base + "read-theme.js?v=1";
     document.head.appendChild(th);
   })();
+  (function () {
+    var base = (s && s.src) ? s.src.replace(/turn\.js[^/]*$/, "") : "https://tafsir.mushafuk.online/";
+    var c = document.createElement("link"); c.rel = "stylesheet"; c.href = base + "quote-color.css?v=1"; document.head.appendChild(c);
+    var q = document.createElement("script"); q.src = base + "quote-color.js?v=1"; document.head.appendChild(q);
+  })();
+
   try { sessionStorage.removeItem("qm.tfdir"); } catch (e) {}
   document.documentElement.classList.remove("qm-turning");
 
