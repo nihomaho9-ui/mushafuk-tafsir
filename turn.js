@@ -67,7 +67,7 @@
   var x = null, y = null, lock = null, lastDx = 0;
   function go(dir) {
     var u = dir > 0 ? next : prev;
-    if (u) location.assign(u);
+    if (u) location.assign(u + (window.qmTrail || ""));
   }
   function down(cx, cy, target) {
     if (target && target.closest && target.closest("a,button,input,textarea")) { x = null; return; }
@@ -114,36 +114,45 @@
   }, true);
 })();
 
-/* QM-BACK-START: "×" returns to the page the reader actually arrived from */
+/* QM-BACK-START: "×" returns to the page this reading trail actually came from.
+   Context lives in each history entry's URL fragment (#qmfrom=...), never in tab-wide storage. */
 (function () {
   var HOSTS = /^(mushafuk\.online|tafsir\.mushafuk\.online|t\.mushafuk\.online|t1\.mushafuk\.online)$/;
-  var KEY = "qm.tfFrom";
   function safe(u, base) {
     try { var p = new URL(u, base); return (p.protocol === "https:" && HOSTS.test(p.hostname)) ? p.href : null; } catch (e) { return null; }
   }
   function reading(u) {
     try { return /\/\d+\/\d+\/(index\.html)?$/.test(new URL(u).pathname); } catch (e) { return false; }
   }
-  // Pure decision: o = {href, hash, referrer, stored, navType}
+  // o = {href, referrer}; returns validated origin URL or null (use page default link)
   function resolveFrom(o) {
-    var here = new URL(o.href);
-    var m = /(?:^#|&)qmfrom=([^&]+)/.exec(o.hash || "");
-    if (m) { var h = null; try { h = safe(decodeURIComponent(m[1]), o.href); } catch (e) {} if (h) return h; }
+    var hash = ""; try { hash = new URL(o.href).hash; } catch (e) { return null; }
+    var m = /(?:^#|&)qmfrom=([^&]+)/.exec(hash);
+    if (m) { var h = null; try { h = safe(decodeURIComponent(m[1]), o.href); } catch (e) {} return h; }
     var r = o.referrer ? safe(o.referrer, o.href) : null;
-    if (r && new URL(r).origin === here.origin) {
-      if (reading(r)) return o.stored || null; // next/prev ayah: keep original entry page
-      return r;                                  // same-site hub / index / search: exact URL known
-    }
-    if (!o.referrer && (o.navType === "back_forward" || o.navType === "reload")) return o.stored || null;
-    return null; // direct entry or cross-site referrer (origin only): use the page's default link
+    if (r && new URL(r).origin === new URL(o.href).origin && !reading(r)) return r;
+    return null;
   }
-  if (typeof module !== "undefined" && module.exports) { module.exports = { resolveFrom: resolveFrom }; return; }
-  var nt = ""; try { nt = (performance.getEntriesByType("navigation")[0] || {}).type || ""; } catch (e) {}
-  var stored = null; try { stored = sessionStorage.getItem(KEY); } catch (e) {}
-  var from = resolveFrom({ href: location.href, hash: location.hash, referrer: document.referrer, stored: stored, navType: nt });
-  try { if (from) sessionStorage.setItem(KEY, from); else sessionStorage.removeItem(KEY); } catch (e) {}
-  if (!from || from === location.href) return;
-  function apply() { var a = document.querySelector("header.bar a.x"); if (a) a.setAttribute("href", from); }
+  function trail(from) { return from ? "#qmfrom=" + encodeURIComponent(from) : ""; }
+  if (typeof module !== "undefined" && module.exports) { module.exports = { resolveFrom: resolveFrom, trail: trail }; return; }
+  var s = document.currentScript;
+  function apply() {
+    var from = resolveFrom({ href: location.href, referrer: document.referrer });
+    if (from === location.href.split("#")[0]) from = null;
+    window.qmTrail = trail(from);
+    var x = document.querySelector("header.bar a.x");
+    if (x) { if (!x.hasAttribute("data-qm-default")) x.setAttribute("data-qm-default", x.getAttribute("href") || ""); x.setAttribute("href", from || x.getAttribute("data-qm-default")); }
+    var adj = [s && s.getAttribute("data-next"), s && s.getAttribute("data-prev")].filter(Boolean).map(function (u) { try { return new URL(u, location.href).href.split("#")[0]; } catch (e) { return ""; } });
+    var as = document.querySelectorAll("a[href]");
+    for (var i = 0; i < as.length; i++) {
+      var a = as[i]; if (a === x) continue;
+      var base = a.getAttribute("data-qm-base") || a.href.split("#")[0];
+      if (adj.indexOf(base) < 0) continue;
+      a.setAttribute("data-qm-base", base);
+      a.setAttribute("href", base + window.qmTrail);
+    }
+  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply); else apply();
+  window.addEventListener("pageshow", function (e) { if (e.persisted) apply(); });
 })();
 /* QM-BACK-END */
