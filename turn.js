@@ -2,6 +2,19 @@
   var s = document.currentScript;
   var next = s.getAttribute("data-next") || "";
   var prev = s.getAttribute("data-prev") || "";
+  (function () {
+    var css = document.createElement("link");
+    css.rel = "stylesheet";
+    var base = (s && s.src) ? s.src.replace(/turn\.js[^/]*$/, "") : "https://tafsir.mushafuk.online/";
+    css.href = base + "saadi.css?v=3";
+    document.head.appendChild(css);
+  })();
+  (function () {
+    var th = document.createElement("script");
+    var base = (s && s.src) ? s.src.replace(/turn\.js[^/]*$/, "") : "https://tafsir.mushafuk.online/";
+    th.src = base + "read-theme.js?v=1";
+    document.head.appendChild(th);
+  })();
   try { sessionStorage.removeItem("qm.tfdir"); } catch (e) {}
   document.documentElement.classList.remove("qm-turning");
 

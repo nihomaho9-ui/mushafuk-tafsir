@@ -1,3 +1,5 @@
+@font-face{font-family:Kitab;src:url(/Kitab-Regular.ttf) format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Kitab;src:url(/Kitab-Bold.ttf) format("truetype");font-weight:700;font-style:normal;font-display:swap}
 html, body { min-height: 100%; overscroll-behavior-x: none; touch-action: pan-y; }
 body { margin: 0; background: #fffaf0; color: #161310; font-family: "Segoe UI", sans-serif; }
 a { color: inherit; }
@@ -9,7 +11,7 @@ a { color: inherit; }
 main { max-width: 46rem; margin: 0 auto; padding: 0.85rem 1rem 2.5rem; min-height: calc(100dvh - 4.2rem); touch-action: pan-y; }
 .src { margin: 0.2rem 0 0.8rem; text-align: center; color: #8a7d68; font-size: 0.78rem; }
 .ay { margin: 0.4rem 0 1rem; font-family: "Amiri", "Scheherazade New", "Traditional Arabic", serif; font-size: 1.65rem; line-height: 2.35; text-align: center; }
-.tx { font-size: 1.12rem; line-height: 2.05; text-align: right; white-space: pre-wrap; }
+.tx { font-family: Kitab, "Noto Naskh Arabic", Amiri, "Scheherazade New", "Traditional Arabic", serif; font-size: clamp(1.22rem, 4vw, 1.4rem); line-height: 2.25; text-align: right; white-space: pre-wrap; color: #111; overflow-wrap: anywhere; }
 html[dir="ltr"] .tx { text-align: start; }
 .rng { display: block; margin-bottom: 0.4rem; color: #8a6a2e; font-size: 0.82rem; }
 .pn { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.6rem; }
