@@ -113,3 +113,37 @@
     up();
   }, true);
 })();
+
+/* QM-BACK-START: "×" returns to the page the reader actually arrived from */
+(function () {
+  var HOSTS = /^(mushafuk\.online|tafsir\.mushafuk\.online|t\.mushafuk\.online|t1\.mushafuk\.online)$/;
+  var KEY = "qm.tfFrom";
+  function safe(u, base) {
+    try { var p = new URL(u, base); return (p.protocol === "https:" && HOSTS.test(p.hostname)) ? p.href : null; } catch (e) { return null; }
+  }
+  function reading(u) {
+    try { return /\/\d+\/\d+\/(index\.html)?$/.test(new URL(u).pathname); } catch (e) { return false; }
+  }
+  // Pure decision: o = {href, hash, referrer, stored, navType}
+  function resolveFrom(o) {
+    var here = new URL(o.href);
+    var m = /(?:^#|&)qmfrom=([^&]+)/.exec(o.hash || "");
+    if (m) { var h = null; try { h = safe(decodeURIComponent(m[1]), o.href); } catch (e) {} if (h) return h; }
+    var r = o.referrer ? safe(o.referrer, o.href) : null;
+    if (r && new URL(r).origin === here.origin) {
+      if (reading(r)) return o.stored || null; // next/prev ayah: keep original entry page
+      return r;                                  // same-site hub / index / search: exact URL known
+    }
+    if (!o.referrer && (o.navType === "back_forward" || o.navType === "reload")) return o.stored || null;
+    return null; // direct entry or cross-site referrer (origin only): use the page's default link
+  }
+  if (typeof module !== "undefined" && module.exports) { module.exports = { resolveFrom: resolveFrom }; return; }
+  var nt = ""; try { nt = (performance.getEntriesByType("navigation")[0] || {}).type || ""; } catch (e) {}
+  var stored = null; try { stored = sessionStorage.getItem(KEY); } catch (e) {}
+  var from = resolveFrom({ href: location.href, hash: location.hash, referrer: document.referrer, stored: stored, navType: nt });
+  try { if (from) sessionStorage.setItem(KEY, from); else sessionStorage.removeItem(KEY); } catch (e) {}
+  if (!from || from === location.href) return;
+  function apply() { var a = document.querySelector("header.bar a.x"); if (a) a.setAttribute("href", from); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply); else apply();
+})();
+/* QM-BACK-END */
