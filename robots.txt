@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://tafsir.mushafuk.online/sitemap.xml
+Sitemap: https://tafsir.mushafuk.online/sitemap-faq.xml
