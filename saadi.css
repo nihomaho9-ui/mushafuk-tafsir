@@ -25,3 +25,8 @@ html[dir="ltr"] .tx { text-align: start; }
 .k { width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center; background: #0b6b4f; color: #fff; flex: none; font-size: 0.85rem; }
 .nm { flex: 1; color: #1a3330; }
 .nm small { display: block; color: #8a7d68; }
+
+/* Grouped multi-ayah passage */
+.ay-group{margin:0.35rem 0 1rem}
+.ay-group .ay{margin:0.45rem 0;padding:0.35rem 0.4rem;border-radius:10px}
+.ay-group .ay.cur{background:rgba(11,107,79,0.08);box-shadow:inset 0 0 0 1px rgba(11,107,79,0.22)}
