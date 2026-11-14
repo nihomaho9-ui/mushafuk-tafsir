@@ -1,0 +1,35 @@
+# التفاسير
+
+> تفاسير آية بآية، بالعربية، بلا إعلان. https://tafsir.mushafuk.online
+
+الآية: https://tafsir.mushafuk.online/{id}/{surah}/{ayah}/
+السورة 1–114. الآية تبدأ من 1. الآية التي لا نص لها بلا صفحة، فلا تخترع نصًا.
+
+## الكتب
+
+- aysar: أيسر التفاسير، أبو بكر الجزائري
+- mukhtasar: المختصر في تفسير القرآن الكريم
+- muyassar: التفسير الميسر
+- uthaymeen: تفسير ابن عثيمين
+- shinqiti: أضواء البيان
+- saadi: تيسير الكريم الرحمن
+- qasimi: محاسن التأويل
+- shawkani: فتح القدير
+- ibnkathir: تفسير ابن كثير
+- qayyim: تفسير ابن القيم، ما جُمع من كلامه على الآيات الموجودة
+- jawzi: زاد المسير
+- baghawi: معالم التنزيل
+- samani: تفسير السمعاني. لا نص لسورة 18
+- zamanin: تفسير ابن أبي زمنين، في الآيات التي ورد لها نص
+- ibnhatim: تفسير ابن أبي حاتم
+- tabari: جامع البيان
+- thawri: تفسير سفيان الثوري
+
+مثال: https://tafsir.mushafuk.online/tabari/1/1/
+
+## For machines
+
+- [Sitemap](https://tafsir.mushafuk.online/sitemap.xml)
+- [FAQ sitemap](https://tafsir.mushafuk.online/sitemap-faq.xml)
+- [robots.txt](https://tafsir.mushafuk.online/robots.txt)
+- Parent index: https://mushafuk.online/llms.txt
