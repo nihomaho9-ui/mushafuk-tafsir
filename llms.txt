@@ -1,35 +1,51 @@
-# التفاسير
+# Mushafuk — Arabic tafsirs
 
-> تفاسير آية بآية، بالعربية، بلا إعلان. https://tafsir.mushafuk.online
+> Arabic Quran commentaries, ayah by ayah, at https://tafsir.mushafuk.online. Part of Mushafuk (https://mushafuk.online). Free, no ads.
 
-الآية: https://tafsir.mushafuk.online/{id}/{surah}/{ayah}/
-السورة 1–114. الآية تبدأ من 1. الآية التي لا نص لها بلا صفحة، فلا تخترع نصًا.
+This host publishes Arabic tafsir as static HTML. Each book has a catalogue page and one page per ayah that has text in that book. When a commentary covers a group of ayahs, the full text is on the first ayah of the group.
 
-## الكتب
+## Start here
 
-- aysar: أيسر التفاسير، أبو بكر الجزائري
-- mukhtasar: المختصر في تفسير القرآن الكريم
-- muyassar: التفسير الميسر
-- uthaymeen: تفسير ابن عثيمين
-- shinqiti: أضواء البيان
-- saadi: تيسير الكريم الرحمن
-- qasimi: محاسن التأويل
-- shawkani: فتح القدير
-- ibnkathir: تفسير ابن كثير
-- qayyim: تفسير ابن القيم، ما جُمع من كلامه على الآيات الموجودة
-- jawzi: زاد المسير
-- baghawi: معالم التنزيل
-- samani: تفسير السمعاني. لا نص لسورة 18
-- zamanin: تفسير ابن أبي زمنين، في الآيات التي ورد لها نص
-- ibnhatim: تفسير ابن أبي حاتم
-- tabari: جامع البيان
-- thawri: تفسير سفيان الثوري
+- [Catalogue](https://tafsir.mushafuk.online/)
+- [All tafsirs on one ayah](https://tafsir.mushafuk.online/all/)
+- [Madinah mushaf](https://mushafuk.online/)
+- [Tafsir overview](https://mushafuk.online/tafsir.html)
+- [FAQ](https://tafsir.mushafuk.online/faq.html)
 
-مثال: https://tafsir.mushafuk.online/tabari/1/1/
+## Books
+
+- [Aysar al-Tafasir](https://tafsir.mushafuk.online/aysar/) — Abu Bakr al-Jaza'iri
+- [al-Mukhtasar fi al-Tafsir](https://tafsir.mushafuk.online/mukhtasar/)
+- [al-Tafsir al-Muyassar](https://tafsir.mushafuk.online/muyassar/)
+- [Ibn Uthaymeen](https://tafsir.mushafuk.online/uthaymeen/)
+- [Adwa' al-Bayan](https://tafsir.mushafuk.online/shinqiti/) — al-Shinqiti
+- [Taysir al-Karim al-Rahman](https://tafsir.mushafuk.online/saadi/) — al-Sa'di
+- [Mahasin al-Ta'wil](https://tafsir.mushafuk.online/qasimi/) — al-Qasimi
+- [Fath al-Qadir](https://tafsir.mushafuk.online/shawkani/) — al-Shawkani
+- [Ibn Kathir](https://tafsir.mushafuk.online/ibnkathir/)
+- [Ibn al-Qayyim](https://tafsir.mushafuk.online/qayyim/)
+- [Zad al-Masir](https://tafsir.mushafuk.online/jawzi/) — Ibn al-Jawzi
+- [Ma'alim al-Tanzil](https://tafsir.mushafuk.online/baghawi/) — al-Baghawi
+- [al-Sam'ani](https://tafsir.mushafuk.online/samani/)
+- [Ibn Abi Zamanin](https://tafsir.mushafuk.online/zamanin/)
+- [Ibn Abi Hatim](https://tafsir.mushafuk.online/ibnhatim/)
+- [Jami' al-Bayan](https://tafsir.mushafuk.online/tabari/) — al-Tabari
+- [Sufyan al-Thawri](https://tafsir.mushafuk.online/thawri/)
+
+## Addresses
+
+- One book, one ayah: https://tafsir.mushafuk.online/{id}/{surah}/{ayah}/
+- Book ids: aysar, mukhtasar, muyassar, uthaymeen, shinqiti, saadi, qasimi, shawkani, ibnkathir, qayyim, jawzi, baghawi, samani, zamanin, ibnhatim, tabari, thawri
+- All of those books on one ayah: https://tafsir.mushafuk.online/all/{surah}/{ayah}/
+- Example: https://tafsir.mushafuk.online/saadi/1/1/
+
+Further Arabic tafsirs are on https://t2.mushafuk.online/. Books on ulum al-Quran and usul are on https://t3.mushafuk.online/.
+
+## Languages
+
+The tafsir text is Arabic. Short FAQ pages also exist in Azerbaijani, English, Russian, and Turkish.
 
 ## For machines
 
-- [Sitemap](https://tafsir.mushafuk.online/sitemap.xml)
-- [FAQ sitemap](https://tafsir.mushafuk.online/sitemap-faq.xml)
+- [Sitemap index](https://tafsir.mushafuk.online/sitemap.xml)
 - [robots.txt](https://tafsir.mushafuk.online/robots.txt)
-- Parent index: https://mushafuk.online/llms.txt
