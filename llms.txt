@@ -49,3 +49,4 @@ The tafsir text is Arabic. Short FAQ pages also exist in Azerbaijani, English, R
 
 - [Sitemap index](https://tafsir.mushafuk.online/sitemap.xml)
 - [robots.txt](https://tafsir.mushafuk.online/robots.txt)
+- [License](https://tafsir.mushafuk.online/LICENSE): All rights reserved. This covers Mushafuk's own work and compilation only. Quran text, translations and tafsirs remain under their authors' and publishers' rights (see Masadir / sources).
