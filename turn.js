@@ -65,41 +65,58 @@
     if (bar) bar.appendChild(brand);
   }
 
-  var x = null, y = null, lock = null, lastDx = 0;
+  var x = null, y = null, t0 = 0, lock = null, lastX = 0, lastY = 0;
+  function selecting() {
+    try { var s = window.getSelection(); return s && String(s).length > 0; } catch (e) { return false; }
+  }
+  function shouldTurn(dx, dy, dt) {
+    if (window.QM_shouldTurnPage) return window.QM_shouldTurnPage(dx, dy, dt, window.innerWidth);
+    if (dt >= 800 || selecting()) return 0;
+    var min = Math.max(60, window.innerWidth * 0.15);
+    if (Math.abs(dx) < min || Math.abs(dx) <= 1.5 * Math.abs(dy || 0)) return 0;
+    return dx > 0 ? 1 : -1;
+  }
   function go(dir) {
     var u = dir > 0 ? next : prev;
     if (u) location.assign(u + (window.qmTrail || ""));
   }
   function down(cx, cy, target) {
-    if (target && target.closest && target.closest("a,button,input,textarea")) { x = null; return; }
-    x = cx; y = cy; lock = null; lastDx = 0;
+    if (target && target.closest && target.closest("a,button,input,textarea,select,label")) { x = null; return; }
+    if (selecting()) { x = null; return; }
+    x = cx; y = cy; t0 = performance.now(); lock = null; lastX = cx; lastY = cy;
   }
   function move(cx, cy, ev) {
     if (x == null) return;
     var dx = cx - x, dy = cy - y;
-    lastDx = dx;
+    lastX = cx; lastY = cy;
     if (!lock) {
       if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
-      lock = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+      lock = Math.abs(dx) > Math.abs(dy) * 1.5 ? "x" : "y";
     }
     if (lock === "x" && ev && ev.cancelable) ev.preventDefault();
   }
   function up() {
     if (x == null) return;
-    var dx = lastDx, was = lock;
+    var dx = lastX - x, dy = lastY - y, dt = performance.now() - t0, was = lock;
     x = null; lock = null;
-    if (was === "x" && Math.abs(dx) > 32) go(dx > 0 ? 1 : -1);
+    if (was === "y") return;
+    var dir = shouldTurn(dx, dy, dt);
+    if (dir) go(dir);
   }
 
   document.addEventListener("touchstart", function (e) {
-    if (e.touches.length !== 1) return;
+    if (e.touches.length !== 1) { x = null; lock = null; return; }
     down(e.touches[0].clientX, e.touches[0].clientY, e.target);
   }, { capture: true, passive: true });
   document.addEventListener("touchmove", function (e) {
+    if (e.touches.length !== 1) { x = null; lock = null; return; }
     if (!e.touches.length) return;
     move(e.touches[0].clientX, e.touches[0].clientY, e);
   }, { capture: true, passive: false });
-  document.addEventListener("touchend", function () { up(); }, true);
+  document.addEventListener("touchend", function (e) {
+    if (e.touches && e.touches.length) { x = null; lock = null; return; }
+    up();
+  }, true);
   document.addEventListener("touchcancel", function () { x = null; lock = null; }, true);
   document.addEventListener("pointerdown", function (e) {
     if (e.pointerType === "touch") return;
