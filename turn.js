@@ -52,17 +52,29 @@
       document.head.appendChild(spec);
     }
   } catch (e) {}
-  if (!document.querySelector("a.home-brand")) {
+  if (!document.querySelector("a.qm-home")) {
     var st = document.createElement("style");
-    st.textContent = "a.home-brand{display:flex;align-items:center;gap:.28rem;margin-inline-start:auto;flex:none;text-decoration:none;color:#12352c;font-weight:700;font-size:.72rem;line-height:1}a.home-brand img{width:1.05rem;height:1.05rem;border-radius:22%;display:block}";
+    st.textContent = "a.qm-home{display:inline-flex;align-items:center;justify-content:center;gap:.3rem;flex:none;color:#0f4d3a;font-weight:650;font-size:.78rem;line-height:1;text-decoration:none;white-space:nowrap;padding:.28rem .58rem;height:2.2rem;box-sizing:border-box;border-radius:999px;border:1px solid rgba(15,77,58,.28);background:rgba(15,77,58,.08)}a.qm-home svg{width:1.15rem;height:1.15rem;display:block;flex:none}a.qm-home:focus-visible{outline:2px solid #0f4d3a;outline-offset:2px}html.qm-theme-black a.qm-home,html.qm-night a.qm-home{color:#d7b56a;border-color:#6a5a3a;background:#1c1c1c}html.qm-theme-white a.qm-home{color:#0b3a2c;border-color:#bbb;background:#fff}@media(max-width:520px){a.qm-home{width:2.2rem;padding:0;gap:0;border-radius:50%}a.qm-home .qm-home-lbl{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}}";
     document.head.appendChild(st);
-    var brand = document.createElement("a");
-    brand.className = "home-brand";
-    brand.href = "https://mushafuk.online/";
-    brand.setAttribute("aria-label", "Mushafuk");
-    brand.innerHTML = '<img src="https://mushafuk.online/icon.png" alt="" width="18" height="18"><span>Mushafuk</span>';
-    var bar = document.querySelector(".bar");
-    if (bar) bar.appendChild(brand);
+    var HOME_LBL={az:"Ana səhifə",tr:"Ana sayfa",en:"Home",ru:"Главная",ar:"الرئيسية",ur:"صفحہ اول",fa:"خانه",uz:"Bosh sahifa",tg:"Саҳифаи асосӣ",ky:"Башкы бет",ug:"باش بەت",ps:"کورپاڼه",ku:"Destpêk",hi:"मुखपृष्ठ",ta:"முகப்பு",fr:"Accueil",de:"Startseite",nl:"Startpagina",es:"Inicio",pt:"Início",ha:"Gida",so:"Bogga hore",ja:"ホーム",bn:"মূলপাতা",id:"Beranda",ms:"Laman utama",zh:"首页",al:"Faqja kryesore"};
+    var lang=(document.documentElement.lang||"").slice(0,2).toLowerCase();
+    if (!HOME_LBL[lang]) { var pm=location.pathname.match(/^\/([a-z]{2})(?:\/|$)/); if (pm) lang=pm[1]; }
+    var label=HOME_LBL[lang]||HOME_LBL.en;
+    var old=document.querySelector("a.home-brand");
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    var home=document.createElement("a");
+    home.className="qm-home";
+    home.href="https://mushafuk.online/";
+    home.setAttribute("aria-label",label);
+    home.title=label;
+    home.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.2 12 4l8 7.2"/><path d="M7 10.2V20h10V10.2"/><path d="M10 20v-6h4v6"/></svg><span class="qm-home-lbl">'+label+"</span>";
+    var bar=document.querySelector("header.bar, header.tr-bar, header.nav .in, .bar");
+    if (bar) {
+      var x=bar.querySelector("a.x, a#back, a.logo");
+      if (x && x.nextSibling) bar.insertBefore(home, x.nextSibling);
+      else if (x) bar.appendChild(home);
+      else bar.insertBefore(home, bar.firstChild);
+    }
   }
 
   var x = null, y = null, t0 = 0, lock = null, lastX = 0, lastY = 0;
